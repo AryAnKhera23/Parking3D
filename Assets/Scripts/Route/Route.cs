@@ -14,7 +14,7 @@ public class Route : MonoBehaviour
 {
     public RouteState state;
     [SerializeField] private Car car;
-    [SerializeField] private Line line;
+    [SerializeField] public Line line;
     [SerializeField] private Park park;
 
     [Space]
@@ -22,7 +22,7 @@ public class Route : MonoBehaviour
     [SerializeField] private Color carColor;
     [SerializeField] private Color lineColor;
 
-    public void Deativate()
+    public void DeativateRoute()
     {
         state = RouteState.Inactive;
     }

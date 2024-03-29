@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Park : MonoBehaviour
 {
-    [SerializeField] private Route route;
+    [SerializeField] public Route route;
     [SerializeField] private SpriteRenderer spriteRenderer;
     public void SetColor(Color color)
     {

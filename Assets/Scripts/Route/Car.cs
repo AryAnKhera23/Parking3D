@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private Route route;
+    [SerializeField] public Route route;
     [SerializeField] public Transform bottomTransform;
     [SerializeField] private MeshRenderer meshRenderer;
     public void SetColor(Color color)
