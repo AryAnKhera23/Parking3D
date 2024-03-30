@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameLoop : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameLoop : MonoBehaviour
     [HideInInspector] public List<Route> readyRoutes = new();
     private int totalRoutes;
 
+    public UnityAction<Route> OnCarEntersPark;
+
     private void Awake()
     {
         instance = this;
@@ -20,6 +23,12 @@ public class GameLoop : MonoBehaviour
     private void Start()
     {
         totalRoutes = transform.GetComponentsInChildren<Route>().Length;
+        OnCarEntersPark += OnCarEntersParkHandler;
+    }
+
+    private void OnCarEntersParkHandler(Route route)
+    {
+        route.car.StopDancingAnim();
     }
 
     public void SetRouteReady(Route route)

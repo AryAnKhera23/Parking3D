@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Car : MonoBehaviour
 {
@@ -27,5 +28,10 @@ public class Car : MonoBehaviour
     public void SetColor(Color color)
     {
         meshRenderer.sharedMaterials[0].color = color;
+    }
+
+    public void StopDancingAnim()
+    {
+        bodyTransform.DOKill(true);
     }
 }

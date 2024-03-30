@@ -22,7 +22,7 @@ public class Route : MonoBehaviour
 
     [Space]
     [Header("Colors: ")]
-    [SerializeField] private Color carColor;
+    [SerializeField] public Color carColor;
     [SerializeField] private Color lineColor;
 
     private void Start()
