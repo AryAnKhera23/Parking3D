@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,14 +14,30 @@ public enum RouteState
 public class Route : MonoBehaviour
 {
     public RouteState state;
-    [SerializeField] private Car car;
+    [SerializeField] public Car car;
     [SerializeField] public Line line;
     [SerializeField] private Park park;
+    [SerializeField] private LineDrawer lineDrawer;
+    [HideInInspector] public Vector3[] linePoints;
 
     [Space]
     [Header("Colors: ")]
     [SerializeField] private Color carColor;
     [SerializeField] private Color lineColor;
+
+    private void Start()
+    {
+        lineDrawer.OnParkLinkedToLine += OnParkLinkedToLineHandler;
+    }
+
+    private void OnParkLinkedToLineHandler(Route route, List<Vector3> points)
+    {
+        if(route == this)
+        {
+            linePoints = points.ToArray();
+            GameLoop.Instance.SetRouteReady(this);
+        }
+    }
 
     public void DeativateRoute()
     {

@@ -823,8 +823,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 4.000001, z: 0.40353963}
-  m_Center: {x: 0, y: 2.5518572e-16, z: -0.101769775}
+  m_Size: {x: 3.1439366, y: 3.012236, z: 0.40353963}
+  m_Center: {x: 0.032925606, y: 0.032925803, z: -0.10176977}
 --- !u!212 &1065852287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -918,7 +918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160014277}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9999907, z: -0, w: 0.004324264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.01, y: 0.008, z: -4.5}
   m_LocalScale: {x: 0.20603609, y: 0.17598367, z: 0.1500096}
   m_ConstrainProportionsScale: 0
@@ -930,7 +930,7 @@ Transform:
   - {fileID: 86841537912483855}
   - {fileID: 460652680}
   m_Father: {fileID: 2003119434}
-  m_LocalEulerAnglesHint: {x: 0, y: -179.504, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1160014279
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -954,7 +954,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -993,7 +993,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   route: {fileID: 2003119435}
   bottomTransform: {fileID: 460652680}
+  bodyTransform: {fileID: 5375927391961935706}
   meshRenderer: {fileID: 5071190626455766299}
+  rb: {fileID: 0}
+  idleCarDanceValue: 0.7
+  durationMultiplier: 0.05
 --- !u!1 &1291755776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,8 +1242,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 2.030966, y: 0.013279511, z: -4.458177}
-  - {x: -1.53, y: 0.06, z: -0.32}
+  - {x: 1.9893963, y: 0.0132795125, z: -4.5420027}
+  - {x: -1.53, y: 0.060000002, z: -0.32000017}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1247,8 +1251,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0045928955
-        value: 0.515152
+        time: 0.0068893433
+        value: 0.33838654
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1292,7 +1296,7 @@ LineRenderer:
     numCapVertices: 2
     alignment: 1
     textureMode: 1
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 2.02, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
@@ -1312,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1614144381}
-  minimumPointDistance: 0.2
+  minimumPointDistance: 0.4
   points: []
   pointCount: 0
 --- !u!1 &1733047257
@@ -1366,8 +1370,54 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.014665, y: 0.26693404, z: 6.9290323}
-  m_Center: {x: 0.024931192, y: -0.05814421, z: -2.5562124}
+  m_Size: {x: 5.031124, y: 0.26693404, z: 6.947073}
+  m_Center: {x: -0.019944668, y: -0.05814421, z: -2.4421911}
+--- !u!1 &1759518710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1759518712}
+  - component: {fileID: 1759518711}
+  m_Layer: 0
+  m_Name: GameLoop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1759518711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759518710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08a05be3d48981449cbde27b43e620f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  readyRoutes: []
+--- !u!4 &1759518712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759518710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0289757, y: 0.2604652, z: -4.4551964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2003119434}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1870356333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1487,15 +1537,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003119433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0289757, y: -0.2604652, z: 4.4551964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1160014278}
   - {fileID: 1065852285}
   - {fileID: 1614144380}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1759518712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2003119435
 MonoBehaviour:
@@ -1513,6 +1563,8 @@ MonoBehaviour:
   car: {fileID: 1160014281}
   line: {fileID: 1614144382}
   park: {fileID: 1065852288}
+  lineDrawer: {fileID: 646754610}
+  linePoints: []
   carColor: {r: 0.6431373, g: 0.063744135, b: 0, a: 1}
   lineColor: {r: 0.8207547, g: 0.018583102, b: 0.018583102, a: 0.5764706}
 --- !u!1 &2099315706
@@ -1984,13 +2036,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8281096179415818672}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5003368, y: 0.49966264, z: 0.49966216, w: -0.5003379}
-  m_LocalPosition: {x: -0.09021442, y: 0.55, z: -0.29975468}
+  m_LocalRotation: {x: -0.4996639, y: 0.50033593, z: 0.50033593, w: 0.4996639}
+  m_LocalPosition: {x: -0.09021442, y: 0.75, z: -0.29975468}
   m_LocalScale: {x: -2.2780988, y: -1, z: -0.33001262}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1160014278}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -89.923}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: -89.923}
 --- !u!33 &5910399976987546455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2121,4 +2173,4 @@ SceneRoots:
   - {fileID: 646754611}
   - {fileID: 180712483}
   - {fileID: 1291755777}
-  - {fileID: 2003119434}
+  - {fileID: 1759518712}

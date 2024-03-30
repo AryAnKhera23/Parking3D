@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LineDrawer : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class LineDrawer : MonoBehaviour
     private Route currentRoute;
     
     private RaycastDetector raycastDetector = new();
+
+
+    public UnityAction<Route, List<Vector3>> OnParkLinkedToLine;
 
 
     private void Start()
@@ -41,10 +45,13 @@ public class LineDrawer : MonoBehaviour
         if(currentRoute != null)
         {
             ContactInfo contactInfo = raycastDetector.RayCast(interactableLayer);
+            
             if (!contactInfo.contacted)
             {
                 Invoke(nameof(ClearCurrentLine), clearInvalidLineDelay);
+                return;
             }
+
             if (contactInfo.contacted)
             {
                 Vector3 newPoint = contactInfo.point;
@@ -60,6 +67,7 @@ public class LineDrawer : MonoBehaviour
                     {
                         ClearCurrentLine();
                     }
+                    
                     OnMouseUpHandler();
                 }
             }
@@ -79,6 +87,7 @@ public class LineDrawer : MonoBehaviour
                 }
                 else
                 {
+                    OnParkLinkedToLine?.Invoke(currentRoute, currentLine.points);
                     currentRoute.DeativateRoute();
                 }
             }
@@ -92,7 +101,9 @@ public class LineDrawer : MonoBehaviour
 
     private void ClearCurrentLine()
     {
-        currentLine?.ClearLine();
+        if(currentLine != null)
+            currentLine.ClearLine();
+        ResetDrawer();
     }
 
     private void ResetDrawer()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Line : MonoBehaviour
@@ -45,7 +46,6 @@ public class Line : MonoBehaviour
 
         points.Add(newPoint);
         pointCount++;
-        Debug.Log("Total Points: " + pointCount);
         lineRenderer.positionCount = pointCount;
         lineRenderer.SetPosition(pointCount - 1, newPoint);
     }
