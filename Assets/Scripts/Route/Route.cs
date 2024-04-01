@@ -24,6 +24,7 @@ public class Route : MonoBehaviour
     [Header("Colors: ")]
     [SerializeField] public Color carColor;
     [SerializeField] private Color lineColor;
+    [SerializeField] public float maxLineLength;
 
     private void Start()
     {
