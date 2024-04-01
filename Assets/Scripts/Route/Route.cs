@@ -39,7 +39,7 @@ public class Route : MonoBehaviour
         }
     }
 
-    public void DeativateRoute()
+    public void DeativateRoute()    
     {
         state = RouteState.Inactive;
     }
