@@ -50,7 +50,7 @@ public class Car : MonoBehaviour
             Vector3 hitPoint = collision.contacts[0].point;
             AddExplosionForce(hitPoint);
             smokeFX.Play();
-            GameLoop.Instance.OnCarCollision.Invoke();
+            GameLoop.Instance.OnCarCollision.Invoke(route);
         }
     }
 

@@ -6,12 +6,15 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     [HideInInspector] public LineRenderer lineRenderer;
-    [SerializeField] float minimumPointDistance;
+    [SerializeField] private float minimumPointDistance;
 
     [HideInInspector] public List<Vector3> points = new();
     [HideInInspector] public int pointCount = 0;
+    [HideInInspector] public float length;
 
     private float pointFixedYAxis;
+    private Vector3 previousPoint;
+    
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class Line : MonoBehaviour
         lineRenderer.positionCount = 0;
         pointCount = 0;
         points.Clear();
+        length = 0f;
     }
 
     public void InitializeLine()
@@ -44,8 +48,15 @@ public class Line : MonoBehaviour
             return;
         }
 
+        if(pointCount == 0)
+        {
+            previousPoint = newPoint;
+        }
+
         points.Add(newPoint);
         pointCount++;
+        length += Vector3.Distance(previousPoint, newPoint);
+        previousPoint = newPoint;
         lineRenderer.positionCount = pointCount;
         lineRenderer.SetPosition(pointCount - 1, newPoint);
     }

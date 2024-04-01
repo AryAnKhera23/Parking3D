@@ -15,7 +15,7 @@ public class GameLoop : MonoBehaviour
     private int totalRoutes;
     private int successfulParks;
     public UnityAction<Route> OnCarEntersPark;
-    public UnityAction OnCarCollision;
+    public UnityAction<Route> OnCarCollision;
 
     private void Awake()
     {
@@ -30,9 +30,10 @@ public class GameLoop : MonoBehaviour
         OnCarEntersPark += OnCarEntersParkHandler;
     }
 
-    private void OnCarCollisionHandler()
+    private void OnCarCollisionHandler(Route route)
     {
         Debug.Log("GameOver");
+        route.park.collider.enabled = false;
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         DOVirtual.DelayedCall(2f, () =>
         {
@@ -48,16 +49,21 @@ public class GameLoop : MonoBehaviour
 
         if(successfulParks == totalRoutes)
         {
-            int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+            
+            LevelManager.Instance?.MarkCurrentLevelComplete();
+            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextLevelIndex = currentLevelIndex + 1;
+
+            
             DOVirtual.DelayedCall(1.3f, () =>
             {
-                if (nextLevel < SceneManager.sceneCountInBuildSettings)
+                if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
                 {
-                    SceneManager.LoadScene(nextLevel);
+                    SceneManager.LoadScene(nextLevelIndex);
                 }
                 else
                 {
-                    Debug.Log("No Next Level");
+                    SceneManager.LoadScene(0);
                 }
             });
             

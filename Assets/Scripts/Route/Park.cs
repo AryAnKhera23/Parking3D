@@ -6,12 +6,14 @@ using UnityEngine;
 public class Park : MonoBehaviour
 {
     [SerializeField] public Route route;
+    [HideInInspector] public new BoxCollider collider;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ParticleSystem parkFX;
     private ParticleSystem.MainModule fxMainModule;
 
     private void Start()
     {
+        collider = GetComponent<BoxCollider>();
         fxMainModule = parkFX.main;
     }
     private void OnTriggerEnter(Collider other)

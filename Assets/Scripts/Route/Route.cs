@@ -16,7 +16,7 @@ public class Route : MonoBehaviour
     public RouteState state;
     [SerializeField] public Car car;
     [SerializeField] public Line line;
-    [SerializeField] private Park park;
+    [SerializeField] public Park park;
     [SerializeField] private LineDrawer lineDrawer;
     [HideInInspector] public Vector3[] linePoints;
 

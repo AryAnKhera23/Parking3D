@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
 
     [Space]
     [SerializeField] private CanvasGroup availableLineCanvasGroup;
-    //[SerializeField] private GameObject availableLineHolder;
     [SerializeField] private  Image availableLineFill;
     private bool isAvailableLineUIActive = false;
 
