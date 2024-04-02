@@ -6,8 +6,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+
+
 public class GameLoop : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager;
     private static GameLoop instance;
     public static GameLoop Instance { get { return instance; } }
 
@@ -32,41 +35,23 @@ public class GameLoop : MonoBehaviour
 
     private void OnCarCollisionHandler(Route route)
     {
-        Debug.Log("GameOver");
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.Play(Sounds.CarCrash);
         route.park.collider.enabled = false;
-        int currentLevel = SceneManager.GetActiveScene().buildIndex;
-        DOVirtual.DelayedCall(2f, () =>
-        {
-            SceneManager.LoadScene(currentLevel);
-        });
-
+        GameOver();
     }
 
     private void OnCarEntersParkHandler(Route route)
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.Play(Sounds.Park);
         route.car.StopDancingAnimation();
         successfulParks++;
 
         if(successfulParks == totalRoutes)
         {
-            
             LevelManager.Instance?.MarkCurrentLevelComplete();
-            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            int nextLevelIndex = currentLevelIndex + 1;
-
-            
-            DOVirtual.DelayedCall(1.3f, () =>
-            {
-                if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
-                {
-                    SceneManager.LoadScene(nextLevelIndex);
-                }
-                else
-                {
-                    SceneManager.LoadScene(0);
-                }
-            });
-            
+            LevelComplete();
         }
     }
 
@@ -86,5 +71,15 @@ public class GameLoop : MonoBehaviour
         {
             route.car.MoveCar(route.linePoints);
         }
+    }
+
+    private void GameOver()
+    {
+        uiManager.gameOverPanel.SetActive(true);
+    }
+
+    private void LevelComplete()
+    {
+        uiManager.levelCompletePanel.SetActive(true);
     }
 }

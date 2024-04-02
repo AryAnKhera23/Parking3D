@@ -12,8 +12,10 @@ public class SceneReloader : MonoBehaviour
     {
         buttonReload.onClick.AddListener(ReloadLevel);
     }
-    private void ReloadLevel()
+    public void ReloadLevel()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.Play(Sounds.ButtonClick);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }

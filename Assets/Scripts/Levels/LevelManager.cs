@@ -48,7 +48,8 @@ public class LevelManager : MonoBehaviour
         int currentSceneIndex = GetCurrentSceneIndex();
         int nextSceneIndex = GetNextSceneIndex();
 
-        Debug.Log(Levels[currentSceneIndex] + " Complete!!");
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.Play(Sounds.LevelComplete);
         SetLevelStatus(Levels[currentSceneIndex], LevelStatus.Completed);
 
         if (nextSceneIndex < Levels.Length)
@@ -71,7 +72,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string level)
     {
-        if (GetNextSceneIndex() < Levels.Length)
+        if (GetCurrentSceneIndex() <= Levels.Length)
         {
             SceneManager.LoadScene(level);
         }

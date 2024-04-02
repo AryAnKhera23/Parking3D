@@ -1754,6 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels:
+  - MenuScene
   - Level-1
   - Level-2
   - Level-3
@@ -3111,15 +3112,15 @@ MonoBehaviour:
   soundMusic: {fileID: 1764415887}
   Sounds:
   - soundType: 0
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 1dc2f2287b118ff45939a91b08a2244e, type: 3}
   - soundType: 1
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 108e96647ea9f0a47a45cde1fb5b3bbe, type: 3}
   - soundType: 2
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 6fb37b1d789fb7243855b0df4b331368, type: 3}
   - soundType: 3
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
   - soundType: 4
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
